@@ -13,7 +13,7 @@ export default function SearchBar(props) {
       <div className="navIcons">
         <i className="far fa-compass" />
         <i className="far fa-heart" />
-        <i class="far fa-user" />
+        <i className="far fa-user" />
       </div>
     </div>
   );

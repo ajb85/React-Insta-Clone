@@ -2,8 +2,22 @@ import React from "react";
 import "./postContainer.css";
 import Comments from "../CommentSection/CommentSection.js";
 import PropTypes from "prop-types";
-// props: post
+/*
+Props:
+post={post}
+key={i}
+index={i}
+displayName={this.state.displayName}
+addComment={this.newComment}
+*/
 export default function PostContainer(props) {
+  function newComment(e) {
+    e.preventDefault();
+    const comment = e.target.firstChild.value;
+    props.addComment(comment, props.index);
+    e.target.firstChild.value = "";
+  }
+
   return (
     <div className="post">
       <section className="postUser">
@@ -23,14 +37,19 @@ export default function PostContainer(props) {
         <p>{props.post.timestamp}</p>
       </section>
       <section className="newComment">
-        <input type="text" placeholder="Add a comment..." />
-        <i className="fas fa-ellipsis-h" />
+        <form onSubmit={newComment}>
+          <input type="text" placeholder="Add a comment..." />
+          <i className="fas fa-ellipsis-h" />
+        </form>
       </section>
     </div>
   );
 }
 
 PostContainer.propTypes = {
+  displayName: PropTypes.string.isRequired,
+  addComment: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
   post: PropTypes.shape({
     username: PropTypes.string.isRequired,
     thumbnailUrl: PropTypes.string.isRequired,
