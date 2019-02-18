@@ -17,8 +17,14 @@ export default function PostContainer(props) {
         </div>
         <strong>{props.post.likes} likes</strong>
       </section>
-
       <Comments comments={props.post.comments} />
+      <section className="timestamp">
+        <p>{props.post.timestamp}</p>
+      </section>
+      <section className="newComment">
+        <input type="text" placeholder="Add a comment..." />
+        <i class="fas fa-ellipsis-h" />
+      </section>
     </div>
   );
 }
