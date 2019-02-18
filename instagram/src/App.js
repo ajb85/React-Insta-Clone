@@ -6,7 +6,9 @@ import PostContainer from "./components/PostContainer/PostContainer.js";
 
 class App extends Component {
   render() {
-    const posts = mockData.map(post => <PostContainer post={post} />);
+    const posts = mockData.map((post, i) => (
+      <PostContainer post={post} key={i} />
+    ));
     return <div>{posts}</div>;
   }
 }
