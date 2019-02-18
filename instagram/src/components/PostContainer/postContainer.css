@@ -1,6 +1,7 @@
 .post {
   border: 1px solid lightgrey;
   max-width: 600px;
+  margin-bottom: 100px;
 }
 .post section {
   margin: 15px 0 15px 15px;

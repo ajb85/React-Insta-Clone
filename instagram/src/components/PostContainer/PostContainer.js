@@ -12,8 +12,8 @@ export default function PostContainer(props) {
       <img src={props.post.imageUrl} />
       <section className="postIcons">
         <div>
-          <i class="far fa-heart" />
-          <i class="far fa-comment" />
+          <i className="far fa-heart" />
+          <i className="far fa-comment" />
         </div>
         <strong>{props.post.likes} likes</strong>
       </section>

@@ -2,5 +2,11 @@ import React from "react";
 import "./commentSection.css";
 //props: comments
 export default function CommentSection(props) {
-  return "Hello Comment World";
+  let comments = props.comments.map(comment => (
+    <div className="comment">
+      <strong>{comment.username}</strong>
+      <span>{comment.text}</span>
+    </div>
+  ));
+  return <section className="comments">{comments}</section>;
 }
