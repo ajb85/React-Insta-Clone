@@ -33,13 +33,11 @@ class App extends Component {
     // assume with that api will come IDs as well.
     let postData = [...this.state.postData];
     let liked = Object.create(this.state.liked);
-    console.log(liked);
     if (!liked[i]) {
       postData[i].likes += 1;
       liked[i] = true;
     } else {
       postData[i].likes -= 1;
-      //delete liked[i];
       liked[i] = false;
     }
     this.setState({ postData, liked });
@@ -47,23 +45,20 @@ class App extends Component {
 
   render() {
     let posts = "Loading...";
-    const modifyPosts = {
+    const modifyPost = {
       likePost: this.likePost,
       newComment: this.addNewComment
     };
     if (this.state && this.state.postData.length) {
       posts = this.state.postData
-        .filter(post => {
-          console.log(post.username);
-          return post.username.includes(this.state.searching);
-        })
+        .filter(post => post.username.includes(this.state.searching))
         .map((post, i) => (
           <PostContainer
             post={post}
             key={i}
             index={i}
             displayName={this.state.displayName}
-            modifyPost={modifyPosts}
+            modifyPost={modifyPost}
             liked={this.state.liked}
           />
         ));

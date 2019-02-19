@@ -16,12 +16,14 @@ export default function PostContainer(props) {
   function newComment(e) {
     e.preventDefault();
     const comment = e.target.firstChild.value;
-    props.modifyPost.addNewComment(comment, props.index);
+    props.modifyPost.newComment(comment, props.index);
     e.target.firstChild.value = "";
   }
+
   const likedClassName = props.liked[props.index]
     ? "far fa-heart liked"
     : "far fa-heart";
+
   return (
     <div className="post">
       <section className="postUser">
