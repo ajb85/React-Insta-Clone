@@ -22,6 +22,10 @@ class App extends Component {
     this.setState({ postData });
   };
 
+  handleSearchInput = searching => {
+    this.setState({ searching });
+  };
+
   likePost = i => {
     // with a post ID you could track their likes.  If a post is already liked,
     // unlike it.  For now, I'm using "i" since the data is static.  This,
@@ -48,21 +52,28 @@ class App extends Component {
       newComment: this.addNewComment
     };
     if (this.state && this.state.postData.length) {
-      posts = this.state.postData.map((post, i) => (
-        <PostContainer
-          post={post}
-          key={i}
-          index={i}
-          displayName={this.state.displayName}
-          modifyPost={modifyPosts}
-          searching={this.state.searching}
-          liked={this.state.liked}
-        />
-      ));
+      posts = this.state.postData
+        .filter(post => {
+          console.log(post.username);
+          return post.username.includes(this.state.searching);
+        })
+        .map((post, i) => (
+          <PostContainer
+            post={post}
+            key={i}
+            index={i}
+            displayName={this.state.displayName}
+            modifyPost={modifyPosts}
+            liked={this.state.liked}
+          />
+        ));
     }
     return (
       <div className="container">
-        <SearchBar />
+        <SearchBar
+          handleSearch={this.handleSearchInput}
+          input={this.state.searching}
+        />
         <div className="postsContainer">{posts}</div>
       </div>
     );
