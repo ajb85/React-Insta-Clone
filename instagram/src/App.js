@@ -10,8 +10,24 @@ class App extends Component {
     this.state = { displayName: "You", postData: [], searching: "", liked: {} };
   }
   componentDidMount() {
-    this.setState({ postData: mockData });
+    if (!localStorage.postData) {
+      localStorage.setItem("postData", JSON.stringify(mockData));
+    }
+    this.setState({ postData: JSON.parse(localStorage.getItem("postData")) });
+
+    window.addEventListener("beforeunload", this.saveStateToStorage);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("beforeunload", this.saveStateToStorage);
+    this.saveStateToStorage();
+  }
+
+  saveStateToStorage = () => {
+    let { postData } = this.state;
+
+    localStorage.setItem("postData", JSON.stringify(postData));
+  };
 
   addNewComment = (comment, i) => {
     let postData = [...this.state.postData];
