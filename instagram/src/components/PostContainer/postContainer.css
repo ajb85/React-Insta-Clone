@@ -45,6 +45,10 @@
   margin-right: 15px;
 }
 
+.post .postIcons i.fa-heart.liked {
+  color: blue;
+}
+
 .post .postIcons i.fa-comment {
   transform: scale(-1, 1);
 }

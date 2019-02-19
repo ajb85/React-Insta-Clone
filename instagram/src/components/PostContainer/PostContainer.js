@@ -8,16 +8,20 @@ post={post}
 key={i}
 index={i}
 displayName={this.state.displayName}
-addComment={this.newComment}
+modifyPost={modifyPosts}
+searching={this.state.searching}
+liked={this.state.liked}
 */
 export default function PostContainer(props) {
   function newComment(e) {
     e.preventDefault();
     const comment = e.target.firstChild.value;
-    props.addComment(comment, props.index);
+    props.modifyPost.addNewComment(comment, props.index);
     e.target.firstChild.value = "";
   }
-
+  const likedClassName = props.liked[props.index]
+    ? "far fa-heart liked"
+    : "far fa-heart";
   return (
     <div className="post">
       <section className="postUser">
@@ -27,7 +31,10 @@ export default function PostContainer(props) {
       <img src={props.post.imageUrl} alt="Post content" />
       <section className="postIcons">
         <div>
-          <i className="far fa-heart" />
+          <i
+            className={likedClassName}
+            onClick={() => props.modifyPost.likePost(props.index)}
+          />
           <i className="far fa-comment" />
         </div>
         <strong>{props.post.likes} likes</strong>
@@ -48,7 +55,7 @@ export default function PostContainer(props) {
 
 PostContainer.propTypes = {
   displayName: PropTypes.string.isRequired,
-  addComment: PropTypes.func.isRequired,
+  //modifyPost: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
   post: PropTypes.shape({
     username: PropTypes.string.isRequired,

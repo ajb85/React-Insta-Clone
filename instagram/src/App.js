@@ -7,10 +7,13 @@ import SearchBar from "./components/SearchBar/SearchBar.js";
 class App extends Component {
   constructor() {
     super();
-    this.state = { displayName: "You", postData: mockData };
+    this.state = { displayName: "You", postData: [], searching: "", liked: {} };
+  }
+  componentDidMount() {
+    this.setState({ postData: mockData });
   }
 
-  newComment = (comment, i) => {
+  addNewComment = (comment, i) => {
     let postData = [...this.state.postData];
     postData[i].comments.push({
       username: this.state.displayName,
@@ -19,16 +22,44 @@ class App extends Component {
     this.setState({ postData });
   };
 
+  likePost = i => {
+    // with a post ID you could track their likes.  If a post is already liked,
+    // unlike it.  For now, I'm using "i" since the data is static.  This,
+    // of course, would NOT work with dynamic data from the API.  But I'll
+    // assume with that api will come IDs as well.
+    let postData = [...this.state.postData];
+    let liked = Object.create(this.state.liked);
+    console.log(liked);
+    if (!liked[i]) {
+      postData[i].likes += 1;
+      liked[i] = true;
+    } else {
+      postData[i].likes -= 1;
+      //delete liked[i];
+      liked[i] = false;
+    }
+    this.setState({ postData, liked });
+  };
+
   render() {
-    const posts = this.state.postData.map((post, i) => (
-      <PostContainer
-        post={post}
-        key={i}
-        index={i}
-        displayName={this.state.displayName}
-        addComment={this.newComment}
-      />
-    ));
+    let posts = "Loading...";
+    const modifyPosts = {
+      likePost: this.likePost,
+      newComment: this.addNewComment
+    };
+    if (this.state && this.state.postData.length) {
+      posts = this.state.postData.map((post, i) => (
+        <PostContainer
+          post={post}
+          key={i}
+          index={i}
+          displayName={this.state.displayName}
+          modifyPost={modifyPosts}
+          searching={this.state.searching}
+          liked={this.state.liked}
+        />
+      ));
+    }
     return (
       <div className="container">
         <SearchBar />
