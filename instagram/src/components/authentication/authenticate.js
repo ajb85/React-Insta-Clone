@@ -1,9 +1,16 @@
 import React, { Component } from "react";
-
-const authenticate = Comp =>
+/*
+props:
+loggedIn={this.state.loggedIn}
+updateState={this.updateState}
+*/
+const authenticate = LogIn => UserLoggedIn =>
   class extends Component {
     render() {
-      return <Comp />;
+      if (this.props.loggedIn) {
+        return <UserLoggedIn username={this.props.username} />;
+      }
+      return <LogIn updateState={this.props.updateState} />;
     }
   };
 
