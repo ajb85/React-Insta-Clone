@@ -7,7 +7,7 @@ class PostsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayName: this.props.username,
+      username: this.props.username,
       postData: [],
       searching: "",
       liked: {}
@@ -15,10 +15,12 @@ class PostsPage extends Component {
     //this.state = { displayName: "You", postData: [], searching: "", liked: {} };
   }
   componentDidMount() {
-    if (!localStorage.postData) {
-      localStorage.setItem("postData", JSON.stringify(mockData));
+    if (!localStorage[this.state.username]) {
+      localStorage.setItem(this.state.username, JSON.stringify(mockData));
     }
-    this.setState({ postData: JSON.parse(localStorage.getItem("postData")) });
+    this.setState({
+      postData: JSON.parse(localStorage.getItem(this.state.username))
+    });
 
     window.addEventListener("beforeunload", this.saveStateToStorage);
   }
@@ -31,13 +33,13 @@ class PostsPage extends Component {
   saveStateToStorage = () => {
     let { postData } = this.state;
 
-    localStorage.setItem("postData", JSON.stringify(postData));
+    localStorage.setItem(this.state.username, JSON.stringify(postData));
   };
 
   addNewComment = (comment, i) => {
     let postData = [...this.state.postData];
     postData[i].comments.push({
-      username: this.state.displayName,
+      username: this.state.username,
       text: comment
     });
     this.setState({ postData });

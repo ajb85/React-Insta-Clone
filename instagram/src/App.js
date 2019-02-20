@@ -11,7 +11,7 @@ class App extends Component {
   }
 
   updateState = (state, stateValue) => {
-    this.setState({ state: stateValue });
+    this.setState({ [state]: stateValue });
   };
 
   render() {
