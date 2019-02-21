@@ -2,6 +2,7 @@ import React from "react";
 //import "./commentSection.css";
 //props: comments
 import { Comment } from "../PostContainer/PostStyles.js";
+
 export default function CommentSection(props) {
   let comments = props.comments.map((comment, i) => (
     <div className="comment" key={i}>
