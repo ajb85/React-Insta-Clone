@@ -1,6 +1,7 @@
 import React from "react";
-import "./commentSection.css";
+//import "./commentSection.css";
 //props: comments
+import { Comment } from "../PostContainer/PostStyles.js";
 export default function CommentSection(props) {
   let comments = props.comments.map((comment, i) => (
     <div className="comment" key={i}>
@@ -8,5 +9,5 @@ export default function CommentSection(props) {
       <span>{comment.text}</span>
     </div>
   ));
-  return <section className="comments">{comments}</section>;
+  return <Comment className="comments">{comments}</Comment>;
 }

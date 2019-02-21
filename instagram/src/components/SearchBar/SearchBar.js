@@ -1,5 +1,6 @@
 import React from "react";
-import "./searchBar.css";
+//import "./searchBar.css";
+import { Header, SearchInput, NavIcons } from "./SearchStyles.js";
 /*
 props:
 handleSearch={this.handleSearchInput}
@@ -10,23 +11,23 @@ export default function SearchBar(props) {
     props.handleSearch(e.target.value);
   }
   return (
-    <div className="searchBar">
+    <Header>
       <div className="logos">
         <img src="https://i.imgur.com/RzOn2Qz.png" alt="IG logo" />
       </div>
-      <div className="searchBox">
-        <input
-          type="text"
-          placeholder="Search"
-          value={props.input}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="navIcons">
+
+      <SearchInput
+        type="text"
+        placeholder="Search"
+        value={props.input}
+        onChange={handleChange}
+      />
+
+      <NavIcons>
         <i className="far fa-compass" />
         <i className="far fa-heart" />
         <i className="far fa-user" />
-      </div>
-    </div>
+      </NavIcons>
+    </Header>
   );
 }

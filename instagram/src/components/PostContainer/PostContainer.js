@@ -1,7 +1,14 @@
 import React from "react";
-import "./postContainer.css";
+//import "./postContainer.css";
 import Comments from "../CommentSection/CommentSection.js";
 import PropTypes from "prop-types";
+import {
+  Post,
+  UserInfo,
+  PostIcons,
+  Timestamp,
+  NewComment
+} from "./PostStyles.js";
 /*
 Props:
 post={post}
@@ -25,13 +32,13 @@ export default function PostContainer(props) {
     : "far fa-heart";
 
   return (
-    <div className="post">
-      <section className="postUser">
+    <Post>
+      <UserInfo>
         <img src={props.post.thumbnailUrl} alt="User avatar" />
         <h2>{props.post.username}</h2>
-      </section>
+      </UserInfo>
       <img src={props.post.imageUrl} alt="Post content" />
-      <section className="postIcons">
+      <PostIcons>
         <div>
           <i
             className={likedClassName}
@@ -40,18 +47,18 @@ export default function PostContainer(props) {
           <i className="far fa-comment" />
         </div>
         <strong>{props.post.likes} likes</strong>
-      </section>
+      </PostIcons>
       <Comments comments={props.post.comments} />
-      <section className="timestamp">
+      <Timestamp>
         <p>{props.post.timestamp}</p>
-      </section>
-      <section className="newComment">
+      </Timestamp>
+      <NewComment>
         <form onSubmit={newComment}>
           <input type="text" placeholder="Add a comment..." />
           <i className="fas fa-ellipsis-h" />
         </form>
-      </section>
-    </div>
+      </NewComment>
+    </Post>
   );
 }
 
