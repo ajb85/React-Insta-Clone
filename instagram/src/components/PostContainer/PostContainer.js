@@ -37,7 +37,11 @@ export default function PostContainer(props) {
         <img src={props.post.thumbnailUrl} alt="User avatar" />
         <h2>{props.post.username}</h2>
       </UserInfo>
-      <img src={props.post.imageUrl} alt="Post content" />
+      <img
+        src={props.post.imageUrl}
+        alt="Post content"
+        onClick={() => props.modifyPost.clickPost(props.index)}
+      />
       <PostIcons>
         <div>
           <i

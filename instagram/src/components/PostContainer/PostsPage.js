@@ -10,7 +10,8 @@ class PostsPage extends Component {
       username: this.props.username,
       postData: [],
       searching: "",
-      liked: {}
+      liked: {},
+      clicked: null
     };
     //this.state = { displayName: "You", postData: [], searching: "", liked: {} };
   }
@@ -66,25 +67,55 @@ class PostsPage extends Component {
     this.setState({ postData, liked });
   };
 
+  clickPost = i => {
+    console.log("clicked");
+    if (this.state.clicked === null) {
+      this.setState({ clicked: i });
+    } else {
+      this.setState({ clicked: null });
+    }
+  };
+
   render() {
     let posts = "Loading...";
     const modifyPost = {
       likePost: this.likePost,
-      newComment: this.addNewComment
+      newComment: this.addNewComment,
+      clickPost: this.clickPost
     };
-    if (this.state && this.state.postData.length) {
+    if (
+      this.state &&
+      this.state.postData.length &&
+      this.state.clicked === null
+    ) {
       posts = this.state.postData
         .filter(post => post.username.includes(this.state.searching))
         .map((post, i) => (
           <PostContainer
             post={post}
-            key={i}
+            key={post.imageUrl}
             index={i}
-            displayName={this.state.displayName}
+            displayName={this.state.username}
             modifyPost={modifyPost}
             liked={this.state.liked}
           />
         ));
+    } else if (
+      this.state &&
+      this.state.postData.length &&
+      typeof this.state.clicked === "number"
+    ) {
+      const post = this.state.postData[this.state.clicked];
+      posts = (
+        <PostContainer
+          post={post}
+          key={post.imageUrl}
+          index={this.state.clicked}
+          displayName={this.state.username}
+          modifyPost={modifyPost}
+          liked={this.state.liked}
+        />
+      );
     }
     return (
       <div className="container">
