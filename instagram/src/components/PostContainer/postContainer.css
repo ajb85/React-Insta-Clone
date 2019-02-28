@@ -1,0 +1,77 @@
+.post {
+  border: 1px solid lightgrey;
+  max-width: 600px;
+  margin-bottom: 100px;
+}
+.post section {
+  margin: 15px 0 15px 15px;
+}
+
+.post .postUser {
+  display: flex;
+  align-items: center;
+}
+
+.post .postUser img {
+  width: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.post .postUser h2 {
+  font-size: 15px;
+}
+
+.post img {
+  width: 100%;
+}
+
+.post .postIcons {
+  margin-bottom: 7px;
+}
+
+.post .postIcons div {
+  display: flex;
+  align-items: center;
+  height: 22px;
+}
+
+.post .postIcons i {
+  font-size: 22px;
+  margin: 15px 0 15px;
+}
+
+.post .postIcons i.fa-heart {
+  margin-right: 15px;
+}
+
+.post .postIcons i.fa-heart.liked {
+  color: blue;
+}
+
+.post .postIcons i.fa-comment {
+  transform: scale(-1, 1);
+}
+
+.post section.timestamp {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 15px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.post section.timestamp p {
+  margin: 0;
+}
+
+.post section.newComment {
+}
+
+.post section.newComment input {
+  width: 94%;
+  border: transparent;
+}
+.post section.newComment input:focus {
+  outline: none;
+}

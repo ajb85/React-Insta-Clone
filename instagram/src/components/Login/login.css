@@ -1,0 +1,16 @@
+.loginContainer {
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+}
+
+.loginContainer input {
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+.loginContainer button {
+  margin: 0 7px;
+}

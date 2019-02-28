@@ -1,0 +1,12 @@
+section.comments {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.comment {
+  margin-bottom: 5px;
+}
+
+.comment strong {
+  margin-right: 5px;
+}
